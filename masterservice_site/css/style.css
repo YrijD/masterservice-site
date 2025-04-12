@@ -1,0 +1,24 @@
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table th {
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .price-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

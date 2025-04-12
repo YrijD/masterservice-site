@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Прайс-лист | МастерСервис</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .form-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 150px; font-weight: bold; }
+        input[type='text'], textarea, input[type='number'], input[type='email'] { width: 300px; padding: 6px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .error { color: red; margin-left: 10px; font-size: 12px; }
+        .contacts { margin-bottom: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 8px; }
+        .phone-link { color: #0066cc; text-decoration: none; font-weight: bold; }
+        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; }
+        .contact-item { margin-bottom: 8px; }
+        .clear-btn { background-color: #f44336; margin-left: 10px; }
+        .clear-btn:hover { background-color: #d32f2f; }
+        .total-amount { font-weight: bold; font-size: 16px; margin-bottom: 15px; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); }
+        .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 8px; }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: black; }
+        .choice-btn { display: block; width: 100%; margin: 10px 0; padding: 10px; text-align: center; border-radius: 4px; }
+        .whatsapp-choice { background-color: #25D366; color: white; }
+        .email-choice { background-color: #4CAF50; color: white; }
+        .phone-choice { background-color: #2196F3; color: white; }
+        .quantity-input { width: 60px !important; margin-right: 10px; }
+        .select-row { display: flex; align-items: center; }
+        .address-group { margin-bottom: 15px; }
+        .address-row { display: flex; align-items: center; margin-bottom: 5px; }
+        .address-label { width: 150px; font-weight: bold; }
+        .address-input { width: 200px; padding: 6px; margin-right: 10px; }
+        .small-input { width: 80px !important; }
+        .required-field { border: 1px solid red !important; }
+        .building-container { display: flex; align-items: center; margin-right: 10px; }
+        .building-label { margin-right: 5px; font-weight: bold; white-space: nowrap; }
+        .address-components { display: flex; align-items: center; flex-wrap: wrap; }
+        .search-container { margin-bottom: 20px; }
+        .search-input { width: 100%; padding: 8px; box-sizing: border-box; }
+        .selected-btn { background-color: #f44336 !important; }
+        .quantity-error { color: red; font-size: 12px; margin-left: 5px; display: none; }
+    </style>
+</head>
+<body>
+    <div class='contacts'>
+        <h2 style='margin-top: 0; color: #333;'>Если у Вас возникнут вопросы, свяжитесь с нами:</h2>
+        <div style='margin-bottom: 10px; font-weight: bold; color: #555;'>Телефоны:</div>
+        <div class='contact-item'>
+            <a href='tel:+79533465559' class='phone-link'>+7 (953) 346-55-59</a>
+            <span> - </span>
+            <a href='https://wa.me/79533465559' class='whatsapp-link'>WhatsApp</a>
+        </div>
+        <div class='contact-item'>
+            <a href='tel:+79300017430' class='phone-link'>+7 (930) 001-74-30</a>
+            <span> - </span>
+            <a href='https://wa.me/79300017430' class='whatsapp-link'>WhatsApp</a>
+        </div>
+        <div class='contact-item'>
+            <a href='tel:+79214006742' class='phone-link'>+7 (921) 400-67-42</a>
+            <span> - </span>
+            <a href='https://wa.me/79214006742' class='whatsapp-link'>WhatsApp</a>
+        </div>
+    </div>
+    <h1 style='color: #2c3e50;'>Прайс лист</h1>
+    <div class='search-container'>
+        <input type='text' id='searchInput' class='search-input' placeholder='Поиск по предмету работ...'>
+    </div>
+    <table id='priceTable'>
+        <thead>
+            <tr>
+                <th>Предмет работ</th>
+                <th>Стоимость работ</th>
+                <th>Описание</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class='item-name'>Доработка водоотведения установкат тройника и манжеты</td>
+                <td data-price='800'>800</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Снятие дверей межкомнатных</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Проведение диагностических работ</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Герметизация ванн</td>
+                <td data-price='1300'>1300</td>
+                <td>В услугу не входят материалы. Стоимость может быть изменена в зависимости от сложности работ.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж душевого поддона</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж душевой кабины</td>
+                <td data-price='2000'>2000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж полотенцесушителя водного</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж радиатора водного</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж раковины</td>
+                <td data-price='700'>700</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж сифона</td>
+                <td data-price='300'>300</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж смесителя</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж счетчика воды</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж счетчика с заглушкой</td>
+                <td data-price='600'>600</td>
+                <td>В услугу не входят материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж унитаза</td>
+                <td data-price='800'>800</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж фильтра для воды</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж душевой кабины</td>
+                <td data-price='7000'>7000</td>
+                <td>В услугу не входит демонтаж и материалы. Стоимость может быть изменена в зависимости от сложности работ.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж и подключение душевой консоли со смесителем</td>
+                <td data-price='2000'>2000</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж и подключение унитаза</td>
+                <td data-price='2500'>2500</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж и подключение фильтра для воды</td>
+                <td data-price='1800'>1800</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж радиатора водного на стену </td>
+                <td data-price='3000'>3000</td>
+                <td>В услугу не входит демонтаж и материалы. Стоимость может быть изменена в зависимости от сложности работ.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж счетчика воды</td>
+                <td data-price='1300'>1300</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Ремонт смесителя (замена кранбуксы) за шт.</td>
+                <td data-price='500'>500</td>
+                <td>В услугу не входят материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж/отключение старой техники</td>
+                <td data-price='800'>800</td>
+                <td>Без вывоза.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Настройка тв </td>
+                <td data-price='700'>700</td>
+                <td>В услугу входит настройка основных функций телевизора, без насторойки смартфункции тв.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Настройка умного дома за комплект</td>
+                <td data-price='2000'>2000</td>
+                <td>Сумма рассчитана исходя из настройки одной пары умного устройства.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Настройка Smart TV</td>
+                <td data-price='700'>700</td>
+                <td>В услугу входит установка учетной записи, скачивание до трех приложений.  </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес и настройка тв до 43"</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес и настройка тв от 43" до 65"</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес и настройка тв от 65" и более</td>
+                <td data-price='3000'>3000</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемого холодильника</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение устройства осуществляется к существующей электроточке. В стоимость установки не входит демонтаж старой техники, навеска фасада и доработка места установки, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемого электрического духового шкафа</td>
+                <td data-price='2300'>2300</td>
+                <td>Подключение устройства осуществляется к существующему выводу электроточки. В стоимость установки не входит работы по монтажу электропроводки, установка автоматического выключателя, демонтаж старой техники и розетки, доработка места установки, а также материалов. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемой микроволновки</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение устройства осуществляется к существующей электроточке. В стоимость установки не входит демонтаж старой техники, доработка места установки, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемой посудомоечной машины</td>
+                <td data-price='2300'>2300</td>
+                <td>Подключение осуществляется к уже подготовленным инженерным коммуникациям. В стоимость услуги не входит демонтаж старой техники, навеска фасада, доработка места установки, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемой стиральной машины</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение осуществляется к уже подготовленным инженерным коммуникациям. В стоимость не входит демонтаж старой техники, навеска фасада и доработка места установки, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемой электрической варочной поверхности</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующему выводу электроточки. В стоимость установки не входят работы по монтажу электропроводки, установки автоматического выключателя, демонтаж старой техники и розетки,  вырез отверстия в столешнице, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка вытяжки</td>
+                <td data-price='1600'>1600</td>
+                <td>Подключение осуществляется к существующей электроточке. В стоимость установки не входит демонтаж старой техники, сверление технологических отверстий в мебели для прокладки воздуховода, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка газового водонагревателя</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость установки не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка газового духового шкафа</td>
+                <td data-price='2300'>2300</td>
+                <td>Подключение устройства осуществляется к существующей газовой и электроточке. В стоимость установки не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка газовой варочной поверхности</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующей газовой и электроточке. В стоимость установки не входит демонтаж старой техники, вырез отверстия в столешнице, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка газовой плиты</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующей газовой и электроточке. В стоимость установки не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и настройка кофемашины</td>
+                <td data-price='1200'>1200</td>
+                <td>Подключение устройства осуществляется к существующей электроточке.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и настройка робота пылесоса</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение устройства осуществляется к существующей электроточке.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и настройка тв до 43"</td>
+                <td data-price='1600'>1600</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и настройка тв от 43" до 65"</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и настройка тв от 65" и более</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и подключение островной вытяжки</td>
+                <td data-price='3000'>3000</td>
+                <td>Подключение устройства осуществляется к существующим инженерным коммуникациям. В стоимость установки не входит демонтаж старой техники, монтаж вентиляционного канала, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>установка и подключение стиральной машины</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение осуществляется к уже подготовленным инженерным коммуникациям. В стоимость не входит демонтаж старой техники, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка посудомоечной машины</td>
+                <td data-price='1900'>1900</td>
+                <td>Подключение осуществляется к уже подготовленным инженерным коммуникациям. В стоимость услуги не входит демонтаж старой техники, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка сушильной машины</td>
+                <td data-price='1500'>1500</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость установки не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка холодильника</td>
+                <td data-price='1500'>1500</td>
+                <td>Подключение устройства осуществляется к существующей электроточке. В стоимость установки не входит демонтаж старой техники, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка электрического накопительного водонагревателя</td>
+                <td data-price='2700'>2700</td>
+                <td>Подключение устройства осуществляется к существующим коммуникациям. В стоимость не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка электрического проточного водонагревателя</td>
+                <td data-price='2500'>2500</td>
+                <td>Подключение устройства осуществляется к существующем инженерным коммуникациям. В стоимость установки не входит демонтаж старой техники, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>установка электрической плиты</td>
+                <td data-price='2300'>2300</td>
+                <td>Подключение устройства осуществляется к существующей электроточки. В стоимость установки не входят работы по монтажу электропроводки, установки автоматического выключателя, демонтаж старой техники и розетки, а также материалы. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка, настройка и подвес Спутникового оборудования (ТВ) за комплект</td>
+                <td data-price='3000'>3000</td>
+                <td>Сумма рассчитана исходя из подключения одного комплекта (тарелка + ресивер). В стоимость не входит демонтаж старого оборудования. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установке встраиваемой вытяжки</td>
+                <td data-price='2000'>2000</td>
+                <td>Подключение осуществляется к существующей электроточке. В стоимость установки не входит демонтаж старой техники, сверление технологических отверстий в мебели для прокладки воздуховода, доработка места установки, а также материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж светильника или люстры</td>
+                <td data-price='300'>300</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж электрического полотенцесушителя</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж электрического счетчика</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж электрической розетки или выключателя/включателя</td>
+                <td data-price='300'>300</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж внутреннего электрического щита</td>
+                <td data-price='5000'>5000</td>
+                <td>Без демонтажа, без штробления и материалов</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж внутренней розетки/выключателя</td>
+                <td data-price='500'>500</td>
+                <td>Без демонтажа, сверления отверстия и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж наружного электрического щита</td>
+                <td data-price='5000'>5000</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж наружной розетки/выключателя</td>
+                <td data-price='500'>500</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж распределительной коробки</td>
+                <td data-price='600'>600</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж электрического счетчика</td>
+                <td data-price='1500'>1500</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж/замена внутреннего или наружного звонка</td>
+                <td data-price='500'>500</td>
+                <td>Без штробления и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес люстры</td>
+                <td data-price='1200'>1200</td>
+                <td>Без демонтажа, материалов и сборки.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес настенного светильника</td>
+                <td data-price='800'>800</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес потолочного светильника</td>
+                <td data-price='1000'>1000</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Прокладка электропроводки в кабельканале за один метр</td>
+                <td data-price='250'>250</td>
+                <td>Без материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Прокладка электропроводки открытым способом за один метр</td>
+                <td data-price='200'>200</td>
+                <td>Без штробления поверхности и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Прокладка электропроводки со штроблением за один метр</td>
+                <td data-price='800'>800</td>
+                <td>Без материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сверление подрозетного стакана</td>
+                <td data-price='600'>600</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка и подключение электрического полотенцесушителя</td>
+                <td data-price='1500'>1500</td>
+                <td>Без демонтажа и материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка или замена автоматоматического выключателя/УЗО/Дифференциального автомата</td>
+                <td data-price='500'>500</td>
+                <td>Без материалов.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж карниза</td>
+                <td data-price='1000'>1000</td>
+                <td>В услугу не входит демонтаж старого изделия.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес зеркала</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес полки</td>
+                <td data-price='800'>800</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес шкафчика или кухонного модуля</td>
+                <td data-price='800'>800</td>
+                <td>Стоимость услуги рассчитана исходя из подвеса одного элемента, в услугу не входит демонтаж изделия.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сборка компьютерного кресла</td>
+                <td data-price='1500'>1500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сборка кровати</td>
+                <td data-price='2000'>2000</td>
+                <td>В зависимости от сложности работ цена может изменяться, в услугу не входит разборка старой кровати.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сборка стола </td>
+                <td data-price='1500'>1500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сборка шкафа</td>
+                <td data-price='4000'>4000</td>
+                <td>
+В зависимости от сложности работ цена может изменяться, в услугу не входит разборка старого шкафа.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сборка шкафчика или кухонного модуля</td>
+                <td data-price='800'>800</td>
+                <td>В услугу не входит демонтаж и разборка изделия.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сверление отверстия в стене (бетон) D до 50 мм.</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сверление отверстия в стене ГКЛ D до 50 мм.</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Сверление отверстия в стене кирпич D до 50 мм.</td>
+                <td data-price='600'>600</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка замка дверного с демонтажом старого</td>
+                <td data-price='2000'>2000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка кронштейнов (2шт.) под микроволновку</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка рулонных штор на окно за шт.</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка турников (комплекс)</td>
+                <td data-price='3000'>3000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка турников (перекладина)</td>
+                <td data-price='2000'>2000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка встраиваемого диспенсера для мыла</td>
+                <td data-price='800'>800</td>
+                <td>В услугу не входят материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка душевого поддона</td>
+                <td data-price='2000'>2000</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка измельчителя бытовых отходов</td>
+                <td data-price='2000'>2000</td>
+                <td>В услугу не входят материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка магистрального фильтра на ХГВС</td>
+                <td data-price='2500'>2500</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка полотенцесушителя водного</td>
+                <td data-price='1500'>1500</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка раковины в ванной</td>
+                <td data-price='2000'>2000</td>
+                <td>В услугу не входит демонтаж и материалы. Стоимость может быть изменена в зависимости от сложности работ.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка раковины в кухне</td>
+                <td data-price='1000'>1000</td>
+                <td>В услугу не входит демонтаж, материалы и вырез отверстия под раковину.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка сифона</td>
+                <td data-price='1000'>1000</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка смесителя </td>
+                <td data-price='1500'>1500</td>
+                <td>В услугу не входит демонтаж и материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка/демонтаж редуктора давления</td>
+                <td data-price='1800'>1800</td>
+                <td>В услугу не входят материалы.</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Устранения засора канализации</td>
+                <td data-price='1000'>1000</td>
+                <td>Стоимость работ может быть изменена в зависимости от сложности засора. </td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Перенавес дверей холодильника</td>
+                <td data-price='2500'>2500</td>
+                <td>0</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж ванны</td>
+                <td data-price='4000'>4000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Монтаж крючков на стену</td>
+                <td data-price='200'>200</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Подвес картины на стену</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка Сушильной и стиральной машины в колонну</td>
+                <td data-price='2500'>2500</td>
+                <td>В стоимость установки не входит демонтаж старой техники, а также материалы и работы по доработки инженерных коммуникаций. (водоотведения, водопровод, электрическая сеть).</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Пайка ПП соединений</td>
+                <td data-price='200'>200</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Изготовление антрисоли</td>
+                <td data-price='2000'>2000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>монтаж вешалки на стену</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка муфты на водопровод пластик D16мм., переход на 1/2 наружную резьбу</td>
+                <td data-price='500'>500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка крана шарового 1/2 внутренняя/внешняя резьба</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Выезд за КАД (за 1 км)</td>
+                <td data-price='50'>50</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Демонтаж дверной коробки</td>
+                <td data-price='1000'>1000</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Установка кодового механического замка</td>
+                <td data-price='2500'>2500</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>установка крана для стиральной машины</td>
+                <td data-price='1000'>1000</td>
+                <td></td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>выезд в пределах КАДа в черте города</td>
+                <td data-price='800'>800</td>
+                <td></td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>замена арматуры бочка унитаза</td>
+                <td data-price='1000'>1000</td>
+                <td></td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>чистка сифона ванны или раковины</td>
+                <td data-price='500'>500</td>
+                <td></td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Прокладка канаизационного трубопровода за 1 м.</td>
+                <td data-price='400'>400</td>
+                <td>В услгу не взодят материалы, демонтаж старй коммуникации</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class='item-name'>Часииное, точечное закрепление карниза, за 1 точку</td>
+                <td data-price='200'>200</td>
+                <td>-</td>
+                <td>
+                    <div class='select-row'>
+                        <input type='number' class='quantity-input' value='0' min='0'>
+                        <span class='quantity-error'>Укажите количество</span>
+                        <button class='selectBtn'>Выбрать</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 style='color: #2c3e50;'>Оформление заказа</h2>
+    <form id='orderForm'>
+        <div class='form-group'>
+            <label for='fio'>ФИО:</label>
+            <input type='text' id='fio' name='fio' class='required-field' required>
+            <span id='fioError' class='error'></span>
+        </div>
+        <div class='form-group'>
+            <label for='phone'>Телефон:</label>
+            <input type='text' id='phone' name='phone' class='required-field' required>
+            <span id='phoneError' class='error'></span>
+        </div>
+        <div class='form-group'>
+            <label for='email'>Email:</label>
+            <input type='email' id='email' name='email'>
+            <span id='emailError' class='error'></span>
+        </div>
+        <div class='form-group address-group'>
+            <div class='address-label'>Адрес:</div>
+            <div class='address-row'>
+                <input type='text' id='city' name='city' class='address-input required-field' placeholder='Город' required>
+                <span id='cityError' class='error'></span>
+            </div>
+            <div class='address-row'>
+                <input type='text' id='street' name='street' class='address-input required-field' placeholder='Проспект/улица' required>
+                <span id='streetError' class='error'></span>
+            </div>
+            <div class='address-row'>
+                <div class='address-components'>
+                    <div style='margin-right: 10px;'>
+                        <span style='font-weight: bold;'>Дом:</span>
+                        <input type='text' id='house' name='house' class='small-input required-field' style='margin-left: 5px;' required>
+                    </div>
+                    <div class='building-container'>
+                        <span class='building-label'>Корпус:</span>
+                        <input type='text' id='building' name='building' class='small-input required-field' value='0' required>
+                    </div>
+                    <div style='margin-right: 10px;'>
+                        <span style='font-weight: bold;'>Квартира:</span>
+                        <input type='text' id='apartment' name='apartment' class='small-input required-field' style='margin-left: 5px;' required>
+                    </div>
+                </div>
+                <span id='addressError' class='error'></span>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='orderList'>Список заказа:</label>
+            <textarea id='orderList' name='orderList' rows='4' class='required-field' required readonly></textarea>
+            <button type='button' id='clearBtn' class='clear-btn'>Очистить</button>
+            <span id='orderListError' class='error'></span>
+        </div>
+        <div class='total-amount'>
+            Сумма заказа: <span id='totalAmount'>0</span> руб.
+        </div>
+        <button type='button' id='submitBtn'>Отправить</button>
+    </form>
+    <div id='sendMethodModal' class='modal'>
+        <div class='modal-content'>
+            <span class='close'>&times;</span>
+            <h2>Выберите способ отправки</h2>
+            <button id='whatsappChoice' class='choice-btn whatsapp-choice'>WhatsApp</button>
+            <button id='emailChoice' class='choice-btn email-choice'>Email</button>
+        </div>
+    </div>
+    <div id='whatsappPhoneModal' class='modal'>
+        <div class='modal-content'>
+            <span class='close'>&times;</span>
+            <h2>Выберите телефон для WhatsApp</h2>
+            <button data-phone='79533465559' class='choice-btn phone-choice'>+7 (953) 346-55-59</button>
+            <button data-phone='79300017430' class='choice-btn phone-choice'>+7 (930) 001-74-30</button>
+            <button data-phone='79214006742' class='choice-btn phone-choice'>+7 (921) 400-67-42</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Подсветка обязательных полей
+            const requiredFields = document.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                field.classList.add('required-field');
+                
+                // Убираем подсветку при заполнении
+                field.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('required-field');
+                    } else {
+                        this.classList.add('required-field');
+                    }
+                });
+            });
+            
+            // Поиск по таблице
+            const searchInput = document.getElementById('searchInput');
+            const priceTable = document.getElementById('priceTable');
+            const rows = priceTable.getElementsByTagName('tr');
+            
+            searchInput.addEventListener('keyup', function() {
+                const searchText = this.value.toLowerCase();
+                
+                for (let i = 1; i < rows.length; i++) {
+                    const itemName = rows[i].getElementsByClassName('item-name')[0].textContent.toLowerCase();
+                    if (itemName.includes(searchText)) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+            
+            const selectBtns = document.querySelectorAll('.selectBtn');
+            const orderList = document.getElementById('orderList');
+            const submitBtn = document.getElementById('submitBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const fioInput = document.getElementById('fio');
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
+            const cityInput = document.getElementById('city');
+            const streetInput = document.getElementById('street');
+            const houseInput = document.getElementById('house');
+            const buildingInput = document.getElementById('building');
+            const apartmentInput = document.getElementById('apartment');
+            const fioError = document.getElementById('fioError');
+            const phoneError = document.getElementById('phoneError');
+            const emailError = document.getElementById('emailError');
+            const cityError = document.getElementById('cityError');
+            const streetError = document.getElementById('streetError');
+            const addressError = document.getElementById('addressError');
+            const orderListError = document.getElementById('orderListError');
+            const totalAmountElement = document.getElementById('totalAmount');
+            const sendMethodModal = document.getElementById('sendMethodModal');
+            const whatsappPhoneModal = document.getElementById('whatsappPhoneModal');
+            const whatsappChoice = document.getElementById('whatsappChoice');
+            const emailChoice = document.getElementById('emailChoice');
+            const closeButtons = document.querySelectorAll('.close');
+            
+            let totalAmount = 0;
+            let selectedItems = [];
+            let formData = {};
+            
+            function updateTotalAmount() {
+                totalAmountElement.textContent = totalAmount;
+            }
+            
+            selectBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const quantityInput = this.parentElement.querySelector('.quantity-input');
+                    const quantityError = this.parentElement.querySelector('.quantity-error');
+                    const quantity = parseInt(quantityInput.value) || 0;
+                    
+                    if (quantity <= 0) {
+                        quantityError.style.display = 'inline';
+                        return;
+                    } else {
+                        quantityError.style.display = 'none';
+                    }
+                    
+                    // Изменяем цвет кнопки на красный
+                    this.classList.add('selected-btn');
+                    
+                    const row = this.closest('tr');
+                    const item = row.cells[0].textContent;
+                    const priceCell = row.cells[1];
+                    const price = parseFloat(priceCell.getAttribute('data-price')) || 0;
+                    const itemTotal = price * quantity;
+                    
+                    // Проверяем, не добавлен ли уже этот товар
+                    const existingItemIndex = selectedItems.findIndex(i => i.item === item);
+                    
+                    if (existingItemIndex >= 0) {
+                        // Обновляем существующий товар
+                        selectedItems[existingItemIndex].quantity = quantity;
+                        selectedItems[existingItemIndex].itemTotal = itemTotal;
+                    } else {
+                        // Добавляем новый товар
+                        selectedItems.push({
+                            item: item, 
+                            price: price, 
+                            quantity: quantity, 
+                            itemTotal: itemTotal
+                        });
+                    }
+                    
+                    orderList.value = selectedItems.map(i => 
+                        `${i.item} - ${i.price} руб. x ${i.quantity} = ${i.itemTotal} руб.`
+                    ).join('\n');
+                    
+                    totalAmount = selectedItems.reduce((sum, item) => sum + item.itemTotal, 0);
+                    updateTotalAmount();
+                    
+                    // Убираем подсветку списка заказа
+                    orderList.classList.remove('required-field');
+                    orderListError.textContent = '';
+                });
+            });
+            
+            clearBtn.addEventListener('click', function() {
+                orderList.value = '';
+                selectedItems = [];
+                totalAmount = 0;
+                updateTotalAmount();
+                orderListError.textContent = '';
+                orderList.classList.add('required-field');
+                
+                // Возвращаем всем кнопкам исходный цвет
+                selectBtns.forEach(btn => {
+                    btn.classList.remove('selected-btn');
+                });
+                
+                // Сбрасываем все количества в 0
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.value = '0';
+                });
+                
+                // Скрываем все сообщения об ошибках количества
+                document.querySelectorAll('.quantity-error').forEach(error => {
+                    error.style.display = 'none';
+                });
+            });
+            
+            function validatePhone(phone) {
+                const re = /^[\d\s\-\+\(\)]+$/;
+                return re.test(phone) && phone.replace(/[\D]/g, '').length >= 5;
+            }
+            
+            function validateEmail(email) {
+                if (!email) return true; // Поле необязательное
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function showModal(modal) {
+                modal.style.display = 'block';
+            }
+            
+            function hideModal(modal) {
+                modal.style.display = 'none';
+            }
+            
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    hideModal(modal);
+                });
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === sendMethodModal) {
+                    hideModal(sendMethodModal);
+                }
+                if (event.target === whatsappPhoneModal) {
+                    hideModal(whatsappPhoneModal);
+                }
+            });
+            
+            submitBtn.addEventListener('click', function() {
+                let isValid = true;
+                
+                if (!fioInput.value.trim()) {
+                    fioError.textContent = 'Поле обязательно для заполнения';
+                    fioInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    fioError.textContent = '';
+                    fioInput.classList.remove('required-field');
+                }
+                
+                if (!phoneInput.value.trim()) {
+                    phoneError.textContent = 'Поле обязательно для заполнения';
+                    phoneInput.classList.add('required-field');
+                    isValid = false;
+                } else if (!validatePhone(phoneInput.value)) {
+                    phoneError.textContent = 'Введите корректный номер телефона';
+                    phoneInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    phoneError.textContent = '';
+                    phoneInput.classList.remove('required-field');
+                }
+                
+                if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
+                    emailError.textContent = 'Введите корректный email';
+                    isValid = false;
+                } else {
+                    emailError.textContent = '';
+                }
+                
+                if (!cityInput.value.trim()) {
+                    cityError.textContent = 'Укажите город';
+                    cityInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    cityError.textContent = '';
+                    cityInput.classList.remove('required-field');
+                }
+                
+                if (!streetInput.value.trim()) {
+                    streetError.textContent = 'Укажите улицу';
+                    streetInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    streetError.textContent = '';
+                    streetInput.classList.remove('required-field');
+                }
+                
+                if (!houseInput.value.trim()) {
+                    addressError.textContent = 'Укажите номер дома';
+                    houseInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    houseInput.classList.remove('required-field');
+                }
+                
+                if (!apartmentInput.value.trim()) {
+                    addressError.textContent = 'Укажите номер квартиры';
+                    apartmentInput.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    apartmentInput.classList.remove('required-field');
+                }
+                
+                if (houseInput.value.trim() && apartmentInput.value.trim()) {
+                    addressError.textContent = '';
+                }
+                
+                if (!orderList.value.trim()) {
+                    orderListError.textContent = 'Добавьте хотя бы один предмет из прайса';
+                    orderList.classList.add('required-field');
+                    isValid = false;
+                } else {
+                    orderListError.textContent = '';
+                    orderList.classList.remove('required-field');
+                }
+                
+                if (isValid) {
+                    formData = {
+                        fio: fioInput.value.trim(),
+                        phone: phoneInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        city: cityInput.value.trim(),
+                        street: streetInput.value.trim(),
+                        house: houseInput.value.trim(),
+                        building: buildingInput.value.trim(),
+                        apartment: apartmentInput.value.trim(),
+                        orderList: orderList.value.trim(),
+                        totalAmount: totalAmount
+                    };
+                    
+                    showModal(sendMethodModal);
+                }
+            });
+            
+            whatsappChoice.addEventListener('click', function() {
+                hideModal(sendMethodModal);
+                showModal(whatsappPhoneModal);
+            });
+            
+            emailChoice.addEventListener('click', function() {
+                hideModal(sendMethodModal);
+                const address = `${formData.city}, ${formData.street}, д. ${formData.house}${formData.building !== '0' ? ', корп. ' + formData.building : ''}, кв. ${formData.apartment}`;
+                let body = `ФИО: ${encodeURIComponent(formData.fio)}%0D%0AТелефон: ${encodeURIComponent(formData.phone)}%0D%0AАдрес: ${encodeURIComponent(address)}%0D%0AСписок заказа: ${encodeURIComponent(formData.orderList)}%0D%0AСумма заказа: ${formData.totalAmount} руб.`;
+                if (formData.email) {
+                    body += `%0D%0AEmail: ${encodeURIComponent(formData.email)}`;
+                }
+                const mailtoLink = `mailto:Dmitriev.urij@mail.ru?subject=Новый заказ&body=${body}`;
+                window.location.href = mailtoLink;
+            });
+            
+            document.querySelectorAll('[data-phone]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const phoneNumber = this.getAttribute('data-phone');
+                    const address = `${formData.city}, ${formData.street}, д. ${formData.house}${formData.building !== '0' ? ', корп. ' + formData.building : ''}, кв. ${formData.apartment}`;
+                    let message = `Новый заказ\n\nФИО: ${formData.fio}\nТелефон: ${formData.phone}\nАдрес: ${address}\n\nСписок заказа:\n${formData.orderList}\n\nСумма заказа: ${formData.totalAmount} руб.`;
+                    if (formData.email) {
+                        message += `\nEmail: ${formData.email}`;
+                    }
+                    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappLink, '_blank');
+                    hideModal(whatsappPhoneModal);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
